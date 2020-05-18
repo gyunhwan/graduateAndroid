@@ -73,7 +73,7 @@ public class MainUnityActivity extends OverrideUnityActivity {
             myButton.setY(500);
             myButton.setOnClickListener( new View.OnClickListener() {
                 public void onClick(View v) {
-                    mUnityPlayer.UnitySendMessage("EX","hideObject","");
+                    mUnityPlayer.UnitySendMessage("Ch_01","hideObject","Ch_01");
                 }
             });
             layout.addView(myButton, 300, 200);
