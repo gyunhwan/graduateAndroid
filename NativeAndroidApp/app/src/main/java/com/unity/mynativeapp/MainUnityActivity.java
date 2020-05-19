@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Process;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
@@ -13,13 +14,18 @@ import com.company.product.OverrideUnityActivity;
 
 public class MainUnityActivity extends OverrideUnityActivity {
     // Setup activity layout
+    private Button onBtn,offBtn;
+    private static int count=1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         addControlsToUnityFrame();
-        Intent intent = getIntent();
-
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
+                WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON |
+                WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD
+        );
+        Intent intent = new Intent(getApplication(), ScreenService.class);
+        startService(intent);
         handleIntent(intent);
     }
 
@@ -33,10 +39,10 @@ public class MainUnityActivity extends OverrideUnityActivity {
     void handleIntent(Intent intent) {
         if(intent == null || intent.getExtras() == null) return;
 
-        if(intent.getExtras().containsKey("doQuit"))
-            if(mUnityPlayer != null) {
-                finish();
-            }
+//        if(intent.getExtras().containsKey("doQuit"))
+//            if(mUnityPlayer != null) {
+//                finish();
+//            }
     }
 
     @Override
@@ -73,12 +79,25 @@ public class MainUnityActivity extends OverrideUnityActivity {
             myButton.setY(500);
             myButton.setOnClickListener( new View.OnClickListener() {
                 public void onClick(View v) {
-                    mUnityPlayer.UnitySendMessage("Ch_01","hideObject","Ch_01");
+                    mUnityPlayer.UnitySendMessage("Ch_Main","hideObject","Ch_0"+count);
+                    count++;
                 }
             });
             layout.addView(myButton, 300, 200);
         }
-
+        {
+            Button myButton = new Button(this);
+            myButton.setText(" on Obj");
+            myButton.setX(600);
+            myButton.setY(500);
+            myButton.setOnClickListener( new View.OnClickListener() {
+                public void onClick(View v) {
+                    mUnityPlayer.UnitySendMessage("Ch_Main","onObject","Ch_0"+(count-1));
+                    count--;
+                }
+            });
+            layout.addView(myButton, 300, 200);
+        }
         }
 
 

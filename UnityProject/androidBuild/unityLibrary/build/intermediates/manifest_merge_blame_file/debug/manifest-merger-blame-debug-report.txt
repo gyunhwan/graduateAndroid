@@ -103,7 +103,7 @@
 58-->C:\Users\rbsgh\unityExample\uaal-example-master\UnityProject\androidBuild\unityLibrary\src\main\AndroidManifest.xml:16:5-101
 59            android:name="unity.build-id"
 59-->C:\Users\rbsgh\unityExample\uaal-example-master\UnityProject\androidBuild\unityLibrary\src\main\AndroidManifest.xml:16:16-45
-60            android:value="132dcfa6-81d3-4968-b413-fc39aeb4eb56" />
+60            android:value="7478cfa6-5662-455a-9153-7da994d9ef53" />
 60-->C:\Users\rbsgh\unityExample\uaal-example-master\UnityProject\androidBuild\unityLibrary\src\main\AndroidManifest.xml:16:46-98
 61    </application>
 62

@@ -7,23 +7,33 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     boolean isUnityLoaded = false;
+    private Button onBtn,offBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        handleIntent(getIntent());
+        offBtn= (Button)findViewById(R.id.btn2);
+        offBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplication(), ScreenService.class);
+                stopService(intent);
+                handleIntent(getIntent());
+            }
+        });
     }
-
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
