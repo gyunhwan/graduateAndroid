@@ -11,6 +11,8 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.alamkanak.weekview.WeekView;
+
 public class MainActivity extends AppCompatActivity {
 
     boolean isUnityLoaded = false;
@@ -20,19 +22,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        offBtn= (Button)findViewById(R.id.btn2);
-        offBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplication(), ScreenService.class);
-                stopService(intent);
-                handleIntent(getIntent());
-            }
-        });
+
+//        offBtn= (Button)findViewById(R.id.button3);
+//        offBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getApplication(), ScreenService.class);
+//                stopService(intent);
+//                handleIntent(getIntent());
+//            }
+//        });
     }
     @Override
     protected void onNewIntent(Intent intent) {
@@ -79,17 +81,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void btnUnloadUnity(View v) {
+        Log.d("사발","사발");
+
         unloadUnity(true);
     }
-
     public void showToast(String message) {
         CharSequence text = message;
         int duration = Toast.LENGTH_SHORT;
         Toast toast = Toast.makeText(getApplicationContext(), text, duration);
         toast.show();
     }
-    public void goCalendar(){
-        Log.d("hi","hi");
+    public void goCalendar(View v){
+        Log.d("시발:","시발");
+        Intent intent = new Intent(this, CalendarActivity.class);
+        startActivity(intent);
+
     }
     @Override
     public void onBackPressed() {

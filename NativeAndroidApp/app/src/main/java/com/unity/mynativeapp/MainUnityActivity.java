@@ -74,13 +74,15 @@ public class MainUnityActivity extends OverrideUnityActivity {
         }
         {
             Button myButton = new Button(this);
-            myButton.setText("Send Msg");
+            myButton.setText("off Obj");
             myButton.setX(320);
             myButton.setY(500);
             myButton.setOnClickListener( new View.OnClickListener() {
                 public void onClick(View v) {
-                    mUnityPlayer.UnitySendMessage("Ch_Main","hideObject","Ch_0"+count);
-                    count++;
+                    if(count>=1) {
+                        mUnityPlayer.UnitySendMessage("Ch_Main", "hideObject", "Ch_0" + count);
+                        count++;
+                    }
                 }
             });
             layout.addView(myButton, 300, 200);
@@ -92,8 +94,10 @@ public class MainUnityActivity extends OverrideUnityActivity {
             myButton.setY(500);
             myButton.setOnClickListener( new View.OnClickListener() {
                 public void onClick(View v) {
-                    mUnityPlayer.UnitySendMessage("Ch_Main","onObject","Ch_0"+(count-1));
-                    count--;
+                    if(count<=9) {
+                        mUnityPlayer.UnitySendMessage("Ch_Main", "onObject", "Ch_0" + (count - 1));
+                        count--;
+                    }
                 }
             });
             layout.addView(myButton, 300, 200);
