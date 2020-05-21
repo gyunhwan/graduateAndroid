@@ -1,34 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".CalendarActivity"
-    android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".CalendarActivity">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-        <CalendarView
-            android:id="@+id/calendar"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"/>
-
-
-    <TimePicker
-        android:id="@+id/timePicker1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <TimePicker
-        android:id="@+id/timePicker2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="날짜"/>
+            <DatePicker
+                android:id="@+id/calendar"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:calendarViewShown="false"
+                android:datePickerMode="spinner" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="시작시간"/>
+            <TimePicker
+                android:id="@+id/time1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:timePickerMode="spinner" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="종료시간"/>
+            <TimePicker
+                android:id="@+id/time2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:timePickerMode="spinner" />
+        </LinearLayout>
     </ScrollView>
 </LinearLayout>
