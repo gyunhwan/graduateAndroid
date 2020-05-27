@@ -10,39 +10,56 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <TextView
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/start"
+                android:text="시작시간"
                 android:layout_height="wrap_content"
-                android:text="날짜"/>
-            <DatePicker
-                android:id="@+id/calendar"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:calendarViewShown="false"
-                android:datePickerMode="spinner" />
-            <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content">
+            </Button>
+            <Button
+                android:id="@+id/end"
+                android:text="종료 시간"
                 android:layout_height="wrap_content"
-                android:text="시작시간"/>
-            <TimePicker
-                android:id="@+id/time1"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content">
+            </Button>
+            <Button
+                android:id="@+id/startTime"
+                android:text="시작시간"
                 android:layout_height="wrap_content"
-                android:timePickerMode="spinner" />
-            <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content">
+            </Button>
+            <Button
+                android:id="@+id/endTime"
+                android:text="종료 시간"
                 android:layout_height="wrap_content"
-                android:text="종료시간"/>
-            <TimePicker
-                android:id="@+id/time2"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content">
+            </Button>
+            <EditText
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:timePickerMode="spinner" />
+                android:id="@+id/title"
+                android:hint="title"/>
+            <EditText
+                android:hint="content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/content"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/push"
+                android:text="등록"
+                ></Button>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cancle"
+                android:text="취소"
+                ></Button>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

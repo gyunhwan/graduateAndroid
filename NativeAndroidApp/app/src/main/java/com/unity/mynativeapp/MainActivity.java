@@ -1,6 +1,7 @@
 package com.unity.mynativeapp;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -17,7 +18,9 @@ public class MainActivity extends AppCompatActivity {
 
     boolean isUnityLoaded = false;
     private Button onBtn,offBtn;
-
+    public static final String EEG_DB="EEG_DB";
+    public static final String EEG_TABLE="EEG";
+    public static SQLiteDatabase eegDB=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
