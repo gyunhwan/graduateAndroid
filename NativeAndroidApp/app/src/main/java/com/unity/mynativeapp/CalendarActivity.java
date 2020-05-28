@@ -2,6 +2,7 @@ package com.unity.mynativeapp;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -17,10 +18,13 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.unity.util.DatabaseHelper;
+import com.unity.util.ValueObject;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class CalendarActivity extends AppCompatActivity {
@@ -38,8 +42,9 @@ public class CalendarActivity extends AppCompatActivity {
     EditText title;
     EditText content;
     DatabaseHelper helper;
-    SQLiteDatabase database;
 
+    String query;
+    SQLiteDatabase db;
 
     private Calendar startCalendar=Calendar.getInstance();
     private Calendar endCalendar=Calendar.getInstance();
@@ -74,6 +79,7 @@ public class CalendarActivity extends AppCompatActivity {
         content=findViewById(R.id.content);
         btnPush=findViewById(R.id.push);
         btnCancle=findViewById(R.id.cancle);
+        final DatabaseHelper databaseHelper=new DatabaseHelper(CalendarActivity.this,"calendar" ,null, 1);
         btnStartDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -141,7 +147,18 @@ public class CalendarActivity extends AppCompatActivity {
         btnPush.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                db=databaseHelper.getReadableDatabase();
+                query="insert into calendar(start_date,end_date,title,content) values("+startDate+"-"+startTime+","+endDate+"-"+endTime+","+title+","+content+")";
+                databaseHelper.insert(db,query);
+                db.close();
+            }
+        });
+        btnCancle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SQLiteDatabase db= databaseHelper.getReadableDatabase();
+                Cursor cur=db.rawQuery("select * from calendar",null);
+                db.close();
             }
         });
 
