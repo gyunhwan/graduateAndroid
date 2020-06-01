@@ -31,14 +31,7 @@
         </activity>
         <activity android:name=".CalendarActivity"/>
         <service android:name=".ScreenService" />
-
-
         <receiver android:name=".ScreenReceiver" />
-
-
-
-
-
     </application>
 
 </manifest>

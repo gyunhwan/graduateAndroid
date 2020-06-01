@@ -2,6 +2,7 @@ package com.unity.mynativeapp;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.database.CharArrayBuffer;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -41,9 +42,8 @@ public class CalendarActivity extends AppCompatActivity {
     private String endTime;
     EditText title;
     EditText content;
-    DatabaseHelper helper;
-
     String query;
+    DatabaseHelper dbHelper;
     SQLiteDatabase db;
 
     private Calendar startCalendar=Calendar.getInstance();
@@ -79,7 +79,9 @@ public class CalendarActivity extends AppCompatActivity {
         content=findViewById(R.id.content);
         btnPush=findViewById(R.id.push);
         btnCancle=findViewById(R.id.cancle);
-        final DatabaseHelper databaseHelper=new DatabaseHelper(CalendarActivity.this,"calendar" ,null, 1);
+        dbHelper=new DatabaseHelper(CalendarActivity.this);
+
+
         btnStartDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -147,17 +149,37 @@ public class CalendarActivity extends AppCompatActivity {
         btnPush.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                db=databaseHelper.getReadableDatabase();
-                query="insert into calendar(start_date,end_date,title,content) values("+startDate+"-"+startTime+","+endDate+"-"+endTime+","+title+","+content+")";
-                databaseHelper.insert(db,query);
+
+                db=dbHelper.getWritableDatabase();
+                try{
+                query="INSERT INTO calendar(id,start_date,end_date,title,content) values(null,'"+startDate+" "+startTime+"','"+endDate+" "+endTime+"','"+title.getText()+"','"+content.getText()+"')";
+
+                db.execSQL(new String(query.getBytes("utf-8")));}
+                catch (Exception e){
+                    e.printStackTrace();
+                }
+                finally{
                 db.close();
+                }
             }
         });
         btnCancle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SQLiteDatabase db= databaseHelper.getReadableDatabase();
-                Cursor cur=db.rawQuery("select * from calendar",null);
+                String[] end=new String[20];
+                db= dbHelper.getReadableDatabase();
+                int count =0;
+                Cursor cur=db.rawQuery("SELECT * FROM calendar",null);
+
+                while(cur.moveToNext()){
+                    end[count]=cur.getString(2);
+
+                    count++;
+                }
+                for(int i=0 ;i < 20;i++){
+                    System.out.println(end[i]);
+                }
+                cur.close();
                 db.close();
             }
         });
@@ -176,3 +198,4 @@ public class CalendarActivity extends AppCompatActivity {
         }
     }
 }
+

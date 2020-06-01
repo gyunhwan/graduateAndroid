@@ -95,7 +95,6 @@ public class MainActivity extends AppCompatActivity {
         toast.show();
     }
     public void goCalendar(View v){
-        Log.d("시발:","시발");
         Intent intent = new Intent(this, CalendarActivity.class);
         startActivity(intent);
 
