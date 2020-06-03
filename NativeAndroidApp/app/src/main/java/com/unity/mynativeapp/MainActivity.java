@@ -84,8 +84,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void btnUnloadUnity(View v) {
-        Log.d("사발","사발");
-
         unloadUnity(true);
     }
     public void showToast(String message) {
