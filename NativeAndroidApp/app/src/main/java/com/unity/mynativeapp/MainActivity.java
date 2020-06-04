@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.alamkanak.weekview.WeekView;
+import com.gordonwong.materialsheetfab.MaterialSheetFab;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,19 +26,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
 
-//        offBtn= (Button)findViewById(R.id.button3);
-//        offBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getApplication(), ScreenService.class);
-//                stopService(intent);
-//                handleIntent(getIntent());
-//            }
-//        });
     }
     @Override
     protected void onNewIntent(Intent intent) {
@@ -95,7 +85,10 @@ public class MainActivity extends AppCompatActivity {
     public void goCalendar(View v){
         Intent intent = new Intent(this, CalendarActivity.class);
         startActivity(intent);
-
+    }
+    public void showCalendar(View v){
+        Intent intent = new Intent(this, MaterialSheetFabActivity.class);
+        startActivity(intent);
     }
     @Override
     public void onBackPressed() {

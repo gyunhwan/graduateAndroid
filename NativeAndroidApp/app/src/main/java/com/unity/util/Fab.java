@@ -8,6 +8,7 @@ import android.view.animation.Interpolator;
 import android.view.animation.ScaleAnimation;
 
 import com.gordonwong.materialsheetfab.AnimatedFab;
+import com.unity.mynativeapp.R;
 
 public class Fab extends FloatingActionButton implements AnimatedFab {
     private static final int FAB_ANIM_DURATION = 200;

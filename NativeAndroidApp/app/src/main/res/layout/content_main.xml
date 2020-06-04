@@ -41,4 +41,14 @@
         android:text="plan"
         app:layout_constraintStart_toEndOf="@+id/button2"
         app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="80dp"
+        android:onClick="showCalendar"
+        android:text="show"
+        app:layout_constraintStart_toEndOf="@+id/button2"
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>
