@@ -41,7 +41,7 @@
         </android.support.design.widget.CoordinatorLayout>
 
         <!-- Your FAB implementation -->
-        <com.gordonwong.materialsheetfab.sample.Fab
+        <com.unity.util.Fab
             android:id="@+id/fab"
             style="@style/Widget.MaterialSheetFab.Fab"
             android:layout_alignParentBottom="true"

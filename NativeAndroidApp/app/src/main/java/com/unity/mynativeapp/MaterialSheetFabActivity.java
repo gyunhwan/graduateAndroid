@@ -41,11 +41,11 @@ public class MaterialSheetFabActivity extends AppCompatActivity implements View.
     public void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle(R.string.notes);
-        setContentView(R.layout.calendar_list);
-//        setupActionBar();
+        setContentView(R.layout.fab_main);
+        setupActionBar();
         setupDrawer();
         setupFab();
-//        setupTabs();
+        setupTabs();
 
     }
     @Override
