@@ -32,6 +32,7 @@ public class CalendarDetailActivity extends Activity {
         setContentView(R.layout.calendar_detail);
         setTitle("Detail");
         Intent intent = getIntent();
+        final String col=intent.getStringExtra("id");
         final CalendarVO vo = new CalendarVO();
         helper = new DatabaseHelper(this);
         db = helper.getReadableDatabase();
@@ -66,8 +67,9 @@ public class CalendarDetailActivity extends Activity {
         updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(getApplicationContext(),CalendarUpdateActivity.class);
-                intent.putExtra("id",vo.getId());
+                Intent intent2= new Intent(getApplicationContext(),CalendarUpdateActivity.class);
+                intent2.putExtra("id",col);
+                startActivity(intent2);
             }
         });
         deleteBtn.setOnClickListener(new View.OnClickListener() {

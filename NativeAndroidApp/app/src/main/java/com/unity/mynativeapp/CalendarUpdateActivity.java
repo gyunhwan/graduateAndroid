@@ -8,8 +8,8 @@ import android.support.annotation.Nullable;
 
 public class CalendarUpdateActivity extends Activity {
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.calendar_update);
         Intent intent = getIntent();
 

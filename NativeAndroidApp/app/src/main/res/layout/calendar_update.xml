@@ -1,82 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <?xml version="1.0" encoding="utf-8"?>
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".CalendarActivity">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".CalendarUpdateActivity">
 
-        <ScrollView
-            android:layout_gravity="center_vertical"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <Button
-                        android:id="@+id/start"
-                        android:text="시작일"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content">
-                    </Button>
-                    <Button
-                        android:id="@+id/end"
-                        android:text="종료일"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content">
-                    </Button>
-                    <Button
-                        android:id="@+id/startTime"
-                        android:text="시작시간"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content">
-                    </Button>
-                    <Button
-                        android:id="@+id/endTime"
-                        android:text="종료 시간"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content">
-                    </Button>
-                </LinearLayout>
-                <EditText
-                    android:layout_width="match_parent"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/start"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/title"
-                    android:hint="title"/>
-                <EditText
-                    android:hint="content"
-                    android:layout_width="match_parent"
-                    android:lines="8"
-                    android:layout_height="1000px"
-                    android:id="@+id/content"/>
-                <LinearLayout
-                    android:layout_width="match_parent"
+                    android:text="시작일"></Button>
+
+                <Button
+                    android:id="@+id/end"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/push"
-                        android:text="등록"
-                        ></Button>
-                    <Button
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/cancle"
-                        android:text="취소"
-                        ></Button>
-                </LinearLayout>
+                    android:text="종료일"></Button>
+
+                <Button
+                    android:id="@+id/startTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="시작시간"></Button>
+
+                <Button
+                    android:id="@+id/endTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="종료 시간"></Button>
             </LinearLayout>
-        </ScrollView>
-    </LinearLayout>
-</android.support.constraint.ConstraintLayout>
+
+            <EditText
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="title" />
+
+            <EditText
+                android:id="@+id/content"
+                android:layout_width="match_parent"
+                android:layout_height="1000px"
+                android:hint="content"
+                android:lines="8" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/push"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="등록"></Button>
+
+                <Button
+                    android:id="@+id/cancle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="취소"></Button>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
