@@ -2,6 +2,7 @@ package com.unity.mynativeapp;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.database.CharArrayBuffer;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -160,27 +161,17 @@ public class CalendarActivity extends AppCompatActivity {
                 }
                 finally{
                 db.close();
+                Intent intent = new Intent(getApplication(),MaterialSheetFabActivity.class);
+                startActivity(intent);
                 }
             }
         });
         btnCancle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String[] end=new String[20];
-                db= dbHelper.getReadableDatabase();
-                int count =0;
-                Cursor cur=db.rawQuery("SELECT * FROM calendar",null);
+                Intent intent= new Intent(getApplicationContext(),MaterialSheetFabActivity.class);
+                startActivity(intent);
 
-                while(cur.moveToNext()){
-                    end[count]=cur.getString(2);
-
-                    count++;
-                }
-                for(int i=0 ;i < 20;i++){
-                    System.out.println(end[i]);
-                }
-                cur.close();
-                db.close();
             }
         });
 

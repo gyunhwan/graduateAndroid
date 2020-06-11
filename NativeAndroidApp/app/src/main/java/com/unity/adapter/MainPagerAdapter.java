@@ -1,10 +1,12 @@
 package com.unity.adapter;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.view.View;
 
 import com.unity.fragment.AllFragment;
 import com.unity.fragment.FavoritesFragment;

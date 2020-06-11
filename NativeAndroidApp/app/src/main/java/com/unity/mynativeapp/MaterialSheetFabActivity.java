@@ -3,6 +3,8 @@ package com.unity.mynativeapp;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -17,18 +19,24 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
 import com.gordonwong.materialsheetfab.MaterialSheetFab;
 import com.gordonwong.materialsheetfab.MaterialSheetFabEventListener;
 import com.unity.adapter.MainPagerAdapter;
+import com.unity.adapter.NotesAdapter;
+import com.unity.util.DatabaseHelper;
 import com.unity.util.Fab;
 
 public class MaterialSheetFabActivity extends AppCompatActivity implements View.OnClickListener {
@@ -36,9 +44,11 @@ public class MaterialSheetFabActivity extends AppCompatActivity implements View.
     private DrawerLayout drawerLayout;
     private MaterialSheetFab materialSheetFab;
     private int statusBarColor;
+    DatabaseHelper dbHelper;
+    SQLiteDatabase db;
 
     @Override
-    public void onCreate( Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle(R.string.notes);
         setContentView(R.layout.fab_main);
@@ -48,6 +58,7 @@ public class MaterialSheetFabActivity extends AppCompatActivity implements View.
         setupTabs();
 
     }
+
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
@@ -74,18 +85,24 @@ public class MaterialSheetFabActivity extends AppCompatActivity implements View.
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.opendrawer,
                 R.string.closedrawer);
-//        drawerLayout.setDrawerListener(drawerToggle);
+        drawerLayout.setDrawerListener(drawerToggle);
     }
 
 
     private void setupActionBar() {
 
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
-        if(getSupportActionBar()!=null)
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
-
+    private void setupBody() {
+        RecyclerView recyclerView = findViewById(R.id.top);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        NotesAdapter adapter = new NotesAdapter(getApplicationContext());
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+    }
 
     /**
      * Sets up the tabs.
@@ -93,7 +110,7 @@ public class MaterialSheetFabActivity extends AppCompatActivity implements View.
     private void setupTabs() {
         // Setup view pager
         ViewPager viewpager = (ViewPager) findViewById(R.id.viewpager);
-        viewpager.setAdapter(new MainPagerAdapter(this,  getSupportFragmentManager()));
+        viewpager.setAdapter(new MainPagerAdapter(this, getSupportFragmentManager()));
         viewpager.setOffscreenPageLimit(MainPagerAdapter.NUM_ITEMS);
         updatePage(viewpager.getCurrentItem());
 
@@ -148,10 +165,14 @@ public class MaterialSheetFabActivity extends AppCompatActivity implements View.
         });
 
         // Set material sheet item click listeners
-        findViewById(R.id.fab_sheet_item_recording).setOnClickListener(this);
-        findViewById(R.id.fab_sheet_item_reminder).setOnClickListener(this);
-        findViewById(R.id.fab_sheet_item_photo).setOnClickListener( this);
-        findViewById(R.id.fab_sheet_item_note).setOnClickListener( this);
+
+        findViewById(R.id.fab_sheet_item_note).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CalendarActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     /**
@@ -198,6 +219,7 @@ public class MaterialSheetFabActivity extends AppCompatActivity implements View.
                 break;
             case MainPagerAdapter.ALL_POS:
             case MainPagerAdapter.FAVORITES_POS:
+
             default:
                 snackbar.setVisibility(View.GONE);
                 break;
@@ -217,8 +239,11 @@ public class MaterialSheetFabActivity extends AppCompatActivity implements View.
 
 
     public void onClick(View v) {
-        Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
-        materialSheetFab.hideSheet();
+
+        Intent intent = new Intent(getApplicationContext(),CalendarDetailActivity.class);
+        TextView view=(TextView)v.findViewById(R.id.calendarVO_id);
+        intent.putExtra("id",view.getText());
+        startActivity(intent);
     }
 
     @Override

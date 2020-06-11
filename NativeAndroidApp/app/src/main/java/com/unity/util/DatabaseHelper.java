@@ -9,7 +9,8 @@ import android.util.Log;
 import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    private String query="CREATE TABLE IF NOT EXISTS  calendar  (id INTEGER PRIMARY KEY AUTOINCREMENT, start_date CHAR(40) ,end_date CHAR(40), title CHAR(40), content CHAR(40))";
+    private String query="CREATE TABLE IF NOT EXISTS  calendar (id INTEGER PRIMARY KEY AUTOINCREMENT, start_date CHAR(40) ,end_date CHAR(40), title CHAR(40), content CHAR(40))";
+    private String query2="CREATE TABLE IF NOT EXISTS user (userName TEXT PRIMARY KEY, addictionRate CHAR(40),item INTEGER )";
     public DatabaseHelper(Context context) {
         super(context, "gamificationDB", null, 1);
     }
@@ -18,6 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(query);
+        db.execSQL(query2);
     }
     //기존 테이블 삭제하고 새 테이블 생성
     @Override

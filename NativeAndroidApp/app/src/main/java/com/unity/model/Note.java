@@ -90,9 +90,9 @@ public class Note {
 
     public static Note randomNote(Context context) {
         double rand = Math.random();
-        String title = "";
-        String note = "";
-        NoteInfo info = new NoteInfo("", 0);
+        String title = "333";
+        String note = "3333";
+        NoteInfo info = new NoteInfo("22222", 0);
         int color = getRandomColor(context);
 
         // Title only

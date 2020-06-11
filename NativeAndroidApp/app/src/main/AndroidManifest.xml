@@ -31,6 +31,7 @@
 
         </activity>
         <activity android:name=".CalendarActivity"/>
+        <activity android:name=".CalendarDetailActivity"/>
         <service android:name=".ScreenService" />
         <receiver android:name=".ScreenReceiver" />
     </application>
