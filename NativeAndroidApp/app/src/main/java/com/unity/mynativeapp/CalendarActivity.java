@@ -30,7 +30,6 @@ import java.util.List;
 import java.util.Locale;
 
 public class CalendarActivity extends AppCompatActivity {
-    private TextView mText;
     private Button btnStartDate;
     private Button btnEndDate;
     private Button btnStartTime;
@@ -153,7 +152,7 @@ public class CalendarActivity extends AppCompatActivity {
 
                 db=dbHelper.getWritableDatabase();
                 try{
-                query="INSERT INTO calendar(id,start_date,end_date,title,content) values(null,'"+startDate+" "+startTime+"','"+endDate+" "+endTime+"','"+title.getText()+"','"+content.getText()+"')";
+                query="INSERT INTO calendar(id,start_date,end_date,title,content) values(null,'"+startDate+"-"+startTime+"','"+endDate+"-"+endTime+"','"+title.getText()+"','"+content.getText()+"')";
 
                 db.execSQL(new String(query.getBytes("utf-8")));}
                 catch (Exception e){

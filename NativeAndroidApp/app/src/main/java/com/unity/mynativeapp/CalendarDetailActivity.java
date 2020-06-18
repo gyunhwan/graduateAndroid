@@ -26,6 +26,7 @@ public class CalendarDetailActivity extends Activity {
     TextView content;
     Button updateBtn;
     Button deleteBtn;
+    TextView appbarCalendarDetail;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +53,14 @@ public class CalendarDetailActivity extends Activity {
         }finally{
             db.close();
         }
+        appbarCalendarDetail=findViewById(R.id.appbarCalendarDetail);
+        appbarCalendarDetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),MaterialSheetFabActivity.class);
+                startActivity(intent);
+            }
+        });
         id=findViewById(R.id.detail_id);
         id.setText(String.valueOf(vo.getId()));
         startTime=findViewById(R.id.detail_startDate);
@@ -84,7 +93,7 @@ public class CalendarDetailActivity extends Activity {
                 finally{
                     db.close();
                 }
-                Intent intent=new Intent(getApplicationContext(),CalendarActivity.class);
+                Intent intent=new Intent(getApplicationContext(),MaterialSheetFabActivity.class);
                 startActivity(intent);
             }
         });
