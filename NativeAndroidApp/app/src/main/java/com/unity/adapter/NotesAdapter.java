@@ -71,7 +71,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
         ArrayList<CalendarVO> notes = new ArrayList<CalendarVO>();
         dbHelper= new DatabaseHelper(context);
         db=dbHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM calendar",null);
+        Cursor cursor = db.rawQuery("SELECT * FROM calendar WHERE start_date> strftime('%Y/%m/%d-%H/%M') ORDER BY start_date ",null);
         while(cursor.moveToNext()){
             CalendarVO vo =new CalendarVO();
             vo.setId(Integer.valueOf(cursor.getString(0)));
@@ -81,7 +81,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
             vo.setContent(cursor.getString(4));
             notes.add(vo);
         }
-
+        db.close();
         return notes;
     }
     @Override
@@ -98,7 +98,6 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
         public TextView id;
         public ViewHolder(View itemView) {
             super(itemView);
-
             title= itemView.findViewById(R.id.calendarVO_title);
             content=itemView.findViewById(R.id.calendarVO_content);
             startDate=itemView.findViewById(R.id.calendarVO_start_date);

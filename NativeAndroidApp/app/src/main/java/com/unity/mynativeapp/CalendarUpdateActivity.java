@@ -55,9 +55,9 @@ public class CalendarUpdateActivity extends Activity {
     DatePickerDialog.OnDateSetListener endDatePicker = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            startCalendar.set(Calendar.YEAR, year);
-            startCalendar.set(Calendar.MONTH, month);
-            startCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            endCalendar.set(Calendar.YEAR, year);
+            endCalendar.set(Calendar.MONTH, month);
+            endCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
             updateDate("end");
         }
     };
@@ -150,8 +150,7 @@ public class CalendarUpdateActivity extends Activity {
                 Log.d("id아이디수정:",id);
                 db=dbHelper.getWritableDatabase();
                 try{
-                    query="UPDATE calendar SET start_date='"+startDate+"-"+startTime+"',end_date='"
-                            +endDate+"-"+endTime+"',title='"+title.getText()+"',content='"+content.getText()+"' WHERE id='"+id+"'";
+                    query="UPDATE calendar SET start_date='"+startDate+"-"+startTime+"',end_date='" +endDate+"-"+endTime+"',title='"+title.getText()+"',content='"+content.getText()+"' WHERE id='"+id+"'";
                     db.execSQL(query);
                 }
                 catch (Exception e){
@@ -177,7 +176,7 @@ public class CalendarUpdateActivity extends Activity {
     }
     private void setState(DatabaseHelper dbhelper, String id){
         CalendarVO vo = new CalendarVO();
-        Log.d("id아이디:",id);
+
         try{
             db=dbhelper.getReadableDatabase();
             Cursor cur=db.rawQuery("SELECT * FROM calendar WHERE id='"+id+"'",null);

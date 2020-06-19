@@ -40,7 +40,6 @@ public class CalendarDetailActivity extends Activity {
         try {
             Cursor cur = db.rawQuery("SELECT * FROM calendar WHERE id ='" + intent.getStringExtra("id") + "'", null);
             while (cur.moveToNext()) {
-
                 vo.setId(Integer.valueOf(cur.getString(0)));
                 vo.setStart_date(cur.getString(1));
                 vo.setEnd_date(cur.getString(2));

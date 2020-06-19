@@ -61,9 +61,9 @@ public class CalendarActivity extends AppCompatActivity {
     DatePickerDialog.OnDateSetListener endDatePicker = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-            startCalendar.set(Calendar.YEAR, year);
-            startCalendar.set(Calendar.MONTH, month);
-            startCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            endCalendar.set(Calendar.YEAR, year);
+            endCalendar.set(Calendar.MONTH, month);
+            endCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
             updateDate("end");
         }
     };
