@@ -88,6 +88,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MaterialSheetFabActivity.class);
         startActivity(intent);
     }
+    public void goTest(View v){
+        Intent intent = new Intent(this,TestActivity.class);
+        startActivity(intent);
+    }
     @Override
     public void onBackPressed() {
         finishAffinity();
