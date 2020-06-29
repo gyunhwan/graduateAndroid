@@ -4,6 +4,8 @@
     package="com.unity.mynativeapp">
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+
     <uses-permission
         android:name="android.permission.PACKAGE_USAGE_STATS"
         tools:ignore="ProtectedPermissions" />
@@ -32,11 +34,14 @@
             android:label="@string/app_name">
 
         </activity>
+        <activity android:name=".TestActivity"/>
         <activity android:name=".CalendarUpdateActivity"/>
         <activity android:name=".CalendarActivity"/>
         <activity android:name=".CalendarDetailActivity"/>
         <service android:name=".ScreenService" />
         <receiver android:name=".ScreenReceiver" />
+        <service android:name=".LogScheduler" android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
     </application>
 
 </manifest>

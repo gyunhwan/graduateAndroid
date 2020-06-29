@@ -24,9 +24,10 @@ public class TestActivity extends Activity {
             Calendar cal =Calendar.getInstance();
             cal.add(Calendar.YEAR,-1);
             UsageStatsManager manager=(UsageStatsManager) getSystemService(Context.USAGE_STATS_SERVICE);
-            List<UsageStats> list=manager.queryUsageStats(UsageStatsManager.INTERVAL_DAILY,System.currentTimeMillis(),System.currentTimeMillis());
+            List<UsageStats> list=manager.queryUsageStats(UsageStatsManager.INTERVAL_MONTHLY,cal.getTimeInMillis(),System.currentTimeMillis());
+            Log.d("기록:",String.valueOf(list.size()));
             for(UsageStats stats: list){
-                Log.d("싸발적이구만", String.valueOf(stats.getTotalTimeInForeground()));
+                Log.d("패키지네임 사용시간",String.valueOf(stats.getPackageName())+ String.valueOf(stats.getTotalTimeInForeground()));
             }
         }
 
