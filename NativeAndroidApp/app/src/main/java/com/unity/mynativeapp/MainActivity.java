@@ -1,19 +1,29 @@
 package com.unity.mynativeapp;
 
 import android.annotation.SuppressLint;
+import android.app.AlarmManager;
+import android.app.AlertDialog;
 import android.app.AppOpsManager;
+import android.app.PendingIntent;
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.os.PowerManager;
+import android.os.SystemClock;
 import android.provider.Settings;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +36,8 @@ import android.widget.Toast;
 
 import com.alamkanak.weekview.WeekView;
 import com.gordonwong.materialsheetfab.MaterialSheetFab;
+
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -42,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         boolean granted = false;
         boolean granted2=false;
+        Handler pHandler;
         AppOpsManager appOps = (AppOpsManager) getBaseContext().getSystemService(Context.APP_OPS_SERVICE);
         PowerManager pm=(PowerManager) getBaseContext().getSystemService(Context.POWER_SERVICE);
         int mode = appOps.checkOpNoThrow(AppOpsManager.OPSTR_GET_USAGE_STATS, android.os.Process.myUid(), getBaseContext().getPackageName());
@@ -54,12 +67,11 @@ public class MainActivity extends AppCompatActivity {
         if (granted == false) {
             // 권한이 없을 경우 권한 요구 페이지 이동
             Intent intent = new Intent(android.provider.Settings.ACTION_USAGE_ACCESS_SETTINGS);
+            intent.setAction(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
+            intent.setData(Uri.parse("package" + getPackageName()));
             startActivity(intent);
         }
 
-        if(pm.isIgnoringBatteryOptimizations(getPackageName())){
-
-        }
 
     }
 
