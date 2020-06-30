@@ -11,6 +11,8 @@ import java.util.List;
 public class DatabaseHelper extends SQLiteOpenHelper {
     private String query="CREATE TABLE IF NOT EXISTS  calendar (id INTEGER PRIMARY KEY AUTOINCREMENT, start_date CHAR(40) ,end_date CHAR(40), title CHAR(40), content CHAR(40))";
     private String query2="CREATE TABLE IF NOT EXISTS user (userName TEXT PRIMARY KEY, addictionRate CHAR(40),item INTEGER )";
+    private String query3="CREATE TABLE IF NOT EXISTS apta (id INTEGER PRIMARY KEY AUTOINCREMENT, time INTEGER,preTime INTEGER)";
+    private String query4="INSERT INTO apta(id,time,preTime) VALUES(null,0,0)";
     public DatabaseHelper(Context context) {
         super(context, "gamificationDB", null, 1);
     }
@@ -20,11 +22,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(query);
         db.execSQL(query2);
+        db.execSQL(query3);
+        db.execSQL(query4);
     }
     //기존 테이블 삭제하고 새 테이블 생성
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS calendar");
+        db.execSQL("DROP TABLE IF EXISTS user");
+        db.execSQL("DROP TABLE IF EXISTS apptime");
+
         onCreate(db);
     }
 

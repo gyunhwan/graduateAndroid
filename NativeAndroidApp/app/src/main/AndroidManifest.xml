@@ -41,11 +41,7 @@
         <activity android:name=".CalendarDetailActivity"/>
         <service android:name=".ScreenService" />
         <receiver android:name=".ScreenReceiver" />
-        <receiver android:name=".DBTaskReceiver">
-            <intent-filter>
-                <action android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-            </intent-filter>
-        </receiver>
+
 
     </application>
 

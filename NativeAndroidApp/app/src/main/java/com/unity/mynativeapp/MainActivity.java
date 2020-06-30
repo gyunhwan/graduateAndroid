@@ -67,8 +67,7 @@ public class MainActivity extends AppCompatActivity {
         if (granted == false) {
             // 권한이 없을 경우 권한 요구 페이지 이동
             Intent intent = new Intent(android.provider.Settings.ACTION_USAGE_ACCESS_SETTINGS);
-            intent.setAction(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
-            intent.setData(Uri.parse("package" + getPackageName()));
+
             startActivity(intent);
         }
 
