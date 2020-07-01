@@ -86,16 +86,16 @@ public class TestActivity extends Activity {
             db.close();
             if ((vo.getAccTime() + time - vo.getPretime()) > 1) {
                 db = dbHelper.getWritableDatabase();
-                int count = (time - vo.getPretime() + vo.getAccTime()) / 3;
+                int count = (time - vo.getPretime() + vo.getAccTime()) / 1;
                 db.execSQL("UPDATE apta SET time=time+'" + Integer.valueOf(time - vo.getPretime()) + "', preTime='" + time
-                        + "',accTime='" + Integer.valueOf((time - vo.getPretime() + vo.getAccTime()) % 3) + "' WHERE id='" + vo.getId() + "'");
+                        + "',accTime='" + Integer.valueOf((time - vo.getPretime() + vo.getAccTime()) % 1) + "' WHERE id='" + vo.getId() + "'");
                 db.close();
                 db = dbHelper.getReadableDatabase();
                 cur = db.rawQuery("SELECT * FROM users", null);
                 if (!cur.moveToNext()) {
                     db.close();
                     db = dbHelper.getWritableDatabase();
-                    db.execSQL("INSERT INTO  users(userName,addictionRate,item,count,countFriends) VALUES('" + "rbsghks2" + "',1,0,1,9)");
+                    db.execSQL("INSERT INTO  users(userName,addictionRate,item,count,countFriends) VALUES('" + "rbsghks2" + "',1,0,0,9)");
                     db.close();
                 } else {
                     db = dbHelper.getReadableDatabase();

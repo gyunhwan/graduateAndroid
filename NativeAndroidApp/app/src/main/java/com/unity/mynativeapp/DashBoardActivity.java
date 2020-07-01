@@ -60,7 +60,7 @@ public class DashBoardActivity extends Activity {
                 Intent intent = new Intent(getApplicationContext(), ArchivementActivity.class);
                 intent.putExtra("title", "friend");
                 DBVO vo = setDB();
-                intent.putExtra("friend",vo.getUsersVO().getCountFriend());
+                intent.putExtra("friend",vo.getUsersVO().getCount());
                 startActivity(intent);
             }
         });
@@ -108,7 +108,7 @@ public class DashBoardActivity extends Activity {
             }
 
         };
-        timer.schedule(TT, 0, 5000);
+        timer.schedule(TT, 0, 60000);
     }
 
     public void setLayout(DBVO vo) {
@@ -128,25 +128,26 @@ public class DashBoardActivity extends Activity {
         int time = 0;
         UsageStatsManager manager = (UsageStatsManager) getSystemService(Context.USAGE_STATS_SERVICE);
         List<UsageStats> list = manager.queryUsageStats(UsageStatsManager.INTERVAL_YEARLY, cal.getTimeInMillis(), System.currentTimeMillis());
-        List<UsageStats> list2 = new ArrayList<UsageStats>();
+
         for (UsageStats stats : list) {
             if (String.valueOf(stats.getPackageName()).equals("com.ss.android.ugc.trill")) {
-                list2.add(stats);
-                time += stats.getTotalTimeInForeground() / 60000;
+
+                time += stats.getTotalTimeInForeground() / 30000;
             } else if (String.valueOf(stats.getPackageName()).equals("com.google.android.youtube")) {
-                list2.add(stats);
-                time += stats.getTotalTimeInForeground() / 60000;
+
+                time += stats.getTotalTimeInForeground() / 30000;
             } else if (String.valueOf(stats.getPackageName()).equals("com.facebook.katana")) {
-                list2.add(stats);
-                time += stats.getTotalTimeInForeground() / 60000;
+
+                time += stats.getTotalTimeInForeground() / 30000;
             } else if (String.valueOf(stats.getPackageName()).equals("com.instagram.android")) {
-                list2.add(stats);
-                time += stats.getTotalTimeInForeground() / 60000;
+
+                time += stats.getTotalTimeInForeground() / 30000;
             }
         }
         dbHelper = new DatabaseHelper(DashBoardActivity.this);
         db = dbHelper.getWritableDatabase();
         db.execSQL("CREATE TABLE IF NOT EXISTS apta (id INTEGER PRIMARY KEY AUTOINCREMENT, time INTEGER,preTime INTEGER,accTime)");
+        db.close();
         db = dbHelper.getReadableDatabase();
         Cursor cur = db.rawQuery("SELECT * FROM apta ", null);
         TimeVO vo = new TimeVO();
@@ -157,6 +158,7 @@ public class DashBoardActivity extends Activity {
             db.execSQL("INSERT INTO apta(id,time,preTime,accTime) VALUES(null,'" + time + "','" + time + "',0)");
             db.close();
         } else {
+            db=dbHelper.getReadableDatabase();
             cur = db.rawQuery("SELECT * FROM apta", null);
             while (cur.moveToNext()) {
                 vo.setId(Integer.valueOf(cur.getString(0)));
@@ -165,20 +167,22 @@ public class DashBoardActivity extends Activity {
                 vo.setAccTime(Integer.valueOf(cur.getString(3)));
             }
             db.close();
-            if ((vo.getAccTime() + time - vo.getPretime()) > 1) {
+            if ((vo.getAccTime() + time - vo.getPretime()) >2){
                 db = dbHelper.getWritableDatabase();
-                int count = (time - vo.getPretime() + vo.getAccTime()) / 3;
+                int count = (time - vo.getPretime() + vo.getAccTime()) / 2;
                 db.execSQL("UPDATE apta SET time=time+'" + Integer.valueOf(time - vo.getPretime()) + "', preTime='" + time
-                        + "',accTime='" + Integer.valueOf((time - vo.getPretime() + vo.getAccTime()) % 3) + "' WHERE id='" + vo.getId() + "'");
+                        + "',accTime='" + Integer.valueOf((time - vo.getPretime() + vo.getAccTime())%2) + "' WHERE id='" + vo.getId() + "'");
                 db.close();
                 db = dbHelper.getReadableDatabase();
                 cur = db.rawQuery("SELECT * FROM users", null);
                 if (!cur.moveToNext()) {
                     db.close();
                     db = dbHelper.getWritableDatabase();
-                    db.execSQL("INSERT INTO  users(userName,addictionRate,item,count,countFriends) VALUES('" + "rbsghks2" + "',1,0,1,9)");
+                    db.execSQL("INSERT INTO users(userName,addictionRate,item,count,countFriends) VALUES('" + "rbsghks2" + "',1,0,1,9)");
                     db.close();
-                } else {
+                }
+                else {
+                    db.close();
                     db = dbHelper.getReadableDatabase();
                     cur = db.rawQuery("SELECT * FROM users", null);
                     while (cur.moveToNext()) {
@@ -190,11 +194,13 @@ public class DashBoardActivity extends Activity {
                     }
                     db.close();
                     if (uvo.getCountFriend() - count <= 1) {
+                        Log.d("hello mo","ther fucker");
                         db = dbHelper.getWritableDatabase();
-                        db.execSQL("UPDATE users SET count=count+'" + count + "',countFreinds=1 WHERE userName='" + "rbsghks2" + "'");
+                        db.execSQL("UPDATE users SET count=count+'" + count + "',countFriends=1 WHERE userName='" + "rbsghks2" + "'");
                         db.close();
 
                     } else {
+                        Log.d("hello mo","ther fucker333");
                         db = dbHelper.getWritableDatabase();
                         db.execSQL("UPDATE users SET count=count+'" + count + "',countFriends=countFriends-'" + count + "'  WHERE userName='" + "rbsghks2" + "'");
                         db.close();
@@ -206,26 +212,35 @@ public class DashBoardActivity extends Activity {
         db = dbHelper.getReadableDatabase();
         Date today = new Date();
         SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd-HH:mm");
-        Log.d("피지어컬", format.format(today));
+
         cur = db.rawQuery("SELECT count(id) FROM calendar WHERE end_date<'" + format.format(today) + "'", null);
         while (cur.moveToNext()) {
             dbVO.setCalendar(cur.getInt(0));
         }
         cur = db.rawQuery("SELECT * FROM users", null);
+        if(!cur.moveToNext()){
+            db.close();
+            db=dbHelper.getWritableDatabase();
+            db.execSQL("INSERT INTO users(userName,addictionRate,item,count,countFriends) VALUES('" + "rbsghks2" + "',1,0,1,9)");
+        }
+        cur.moveToPosition(0);
         while (cur.moveToNext()) {
+            Log.d("네임:",cur.getColumnName(4));
+            Log.d("네임233:",cur.getColumnName(3));
             uvo.setId(cur.getString(0));
             uvo.setAddictionRate(cur.getString(1));
             uvo.setItem(cur.getInt(2));
             uvo.setCount(cur.getInt(3));
             uvo.setCountFriend(cur.getInt(4));
+
         }
 
-        dbVO.setUsersVO(uvo);
-        cur=db.rawQuery("SELECT count(id) FROM calendar WHERE end_date< strftime('%Y/%m/%d-%H/%M')  ",null);
+        cur=db.rawQuery("SELECT count(id) FROM calendar WHERE end_date < strftime('%Y/%m/%d-%H/%M')  ",null);
         while(cur.moveToNext()){
             dbVO.setArchive(cur.getInt(0));
         }
-        Log.d("유브이오정보ㅓ", String.valueOf(uvo.getId()));
+        dbVO.setUsersVO(uvo);
+
         return dbVO;
     }
 }

@@ -34,7 +34,7 @@ public class ArchivementActivity extends Activity {
         Cursor cur = db.rawQuery("SELECT * FROM archive", null);
         if (!cur.moveToNext()) {
             setFirst();
-            Log.d("앙 기모리", "모귀앙띠");
+
         }
         switch (getIntent().getStringExtra("title")) {
             case "money":
@@ -108,11 +108,11 @@ public class ArchivementActivity extends Activity {
                 public void onClick(View v) {
                     cur.moveToPosition(c);
                     Log.d("앙 기모링", cur.getString(3) + cur.getString(4));
-                    if (cur.getInt(3) == 0 && cur.getInt(4) > time) {
+                    if (cur.getInt(3) == 0 && cur.getInt(4) == time) {
                         Log.d("해윙", "햄윙");
                         db = dbHelper.getWritableDatabase();
                         db.execSQL("UPDATE archive SET checkItem=1 WHERE id=" + cur.getInt(0));
-                        db.execSQL("UPDATE users SET item=item+1");
+                        db.execSQL("UPDATE users SET item=item+1 WHERE userName='rbsghks2'");
                         btn.setClickable(false);
                     }
                 }
@@ -150,7 +150,7 @@ public class ArchivementActivity extends Activity {
                         Log.d("해윙", "햄윙");
                         db = dbHelper.getWritableDatabase();
                         db.execSQL("UPDATE archive SET checkItem=1 WHERE id=" + cur.getInt(0));
-                        db.execSQL("UPDATE users SET item=item+1");
+                        db.execSQL("UPDATE users SET item=item+1 WHERE userName='rbsghks2'");
                         btn.setClickable(false);
                     }
                 }
@@ -189,7 +189,7 @@ public class ArchivementActivity extends Activity {
                         Log.d("해윙", "햄윙");
                         db = dbHelper.getWritableDatabase();
                         db.execSQL("UPDATE archive SET checkItem=1 WHERE id=" + cur.getInt(0));
-                        db.execSQL("UPDATE users SET item=item+1");
+                        db.execSQL("UPDATE users SET item=item+1 WHERE userName='rbsghks2'");
                         btn.setClickable(false);
                     }
                 }
@@ -227,7 +227,7 @@ public class ArchivementActivity extends Activity {
                         Log.d("해윙", "햄윙");
                         db = dbHelper.getWritableDatabase();
                         db.execSQL("UPDATE archive SET checkItem=1 WHERE id=" + cur.getInt(0));
-                        db.execSQL("UPDATE users SET item=item+1");
+                        db.execSQL("UPDATE users SET item=item+1 WHERE userName='rbsghks2'");
                         btn.setClickable(false);
                     }
                 }
@@ -261,12 +261,12 @@ public class ArchivementActivity extends Activity {
                 @Override
                 public void onClick(View v) {
                     cur.moveToPosition(c);
-                    Log.d("앙 기모링", cur.getString(3) + cur.getString(4));
+
                     if (cur.getInt(3) == 0 && cur.getInt(4) >archive) {
-                        Log.d("해윙", "햄윙");
+
                         db = dbHelper.getWritableDatabase();
                         db.execSQL("UPDATE archive SET checkItem=1 WHERE id=" + cur.getInt(0));
-                        db.execSQL("UPDATE users SET item=item+1");
+                        db.execSQL("UPDATE users SET item=item+1 WHERE userName='rbsghks2'");
                         btn.setClickable(false);
                     }
                 }

@@ -59,8 +59,8 @@
             android:layout_marginTop="3dp"
             android:background="@drawable/textview_button"
             android:clickable="true"
-            android:drawableStart="@drawable/battery"
-            android:drawableLeft="@drawable/battery"
+            android:drawableStart="@drawable/battery2"
+            android:drawableLeft="@drawable/battery2"
             android:text="Battery" />
 
         <TextView
@@ -71,8 +71,8 @@
             android:layout_marginTop="3dp"
             android:background="@drawable/textview_button"
             android:clickable="true"
-            android:drawableStart="@drawable/money"
-            android:drawableLeft="@drawable/money"
+            android:drawableStart="@drawable/money2"
+            android:drawableLeft="@drawable/money2"
             android:text="Money" />
 
         <TextView

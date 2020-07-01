@@ -33,7 +33,7 @@ android {
 
     signingConfigs {
         release {
-            storeFile file('C:/Users/rbsgh/user.keystore')
+            storeFile file('C:/Users/User/user.keystore')
             storePassword ''
             keyAlias 'lee'
             keyPassword ''
