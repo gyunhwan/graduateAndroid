@@ -71,7 +71,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
         ArrayList<CalendarVO> notes = new ArrayList<CalendarVO>();
         dbHelper= new DatabaseHelper(context);
         db=dbHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM calendar WHERE start_date> strftime('%Y/%m/%d-%H/%M') ORDER BY start_date ",null);
+        Cursor cursor = db.rawQuery("SELECT * FROM calendar WHERE end_date< strftime('%Y/%m/%d-%H/%M') ORDER BY start_date ",null);
         while(cursor.moveToNext()){
             CalendarVO vo =new CalendarVO();
             vo.setId(Integer.valueOf(cursor.getString(0)));

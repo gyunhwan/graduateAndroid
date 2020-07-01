@@ -13,6 +13,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.net.Uri;
@@ -36,16 +37,17 @@ import android.widget.Toast;
 
 import com.alamkanak.weekview.WeekView;
 import com.gordonwong.materialsheetfab.MaterialSheetFab;
+import com.unity.util.DatabaseHelper;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
     boolean isUnityLoaded = false;
     private Button onBtn, offBtn;
-    public static final String EEG_DB = "EEG_DB";
-    public static final String EEG_TABLE = "EEG";
-    public static SQLiteDatabase eegDB = null;
+
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -70,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
 
             startActivity(intent);
         }
-
 
     }
 
@@ -136,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goCalendar(View v) {
-        Intent intent = new Intent(this, CalendarActivity.class);
+        Intent intent = new Intent(this, DashBoardActivity.class);
         startActivity(intent);
     }
 

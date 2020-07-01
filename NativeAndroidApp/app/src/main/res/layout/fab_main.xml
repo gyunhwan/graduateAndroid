@@ -73,29 +73,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <!-- Recording -->
-                    <TextView
-                        android:id="@+id/fab_sheet_item_recording"
-                        style="@style/TextAppearance.MaterialSheetFab.Sheet.Item"
-                        android:drawableLeft="@drawable/ic_mic_grey600_24dp"
-                        android:drawableStart="@drawable/ic_mic_grey600_24dp"
-                        android:text="@string/recording" />
 
-                    <!-- Reminder -->
-                    <TextView
-                        android:id="@+id/fab_sheet_item_reminder"
-                        style="@style/TextAppearance.MaterialSheetFab.Sheet.Item"
-                        android:drawableLeft="@drawable/ic_access_alarms_grey600_24dp"
-                        android:drawableStart="@drawable/ic_access_alarms_grey600_24dp"
-                        android:text="@string/reminder" />
-
-                    <!-- Photo -->
-                    <TextView
-                        android:id="@+id/fab_sheet_item_photo"
-                        style="@style/TextAppearance.MaterialSheetFab.Sheet.Item"
-                        android:drawableLeft="@drawable/ic_photo_camera_grey600_24dp"
-                        android:drawableStart="@drawable/ic_photo_camera_grey600_24dp"
-                        android:text="@string/photo" />
 
                     <!-- Note -->
                     <LinearLayout
