@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".DashBoardActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="DASHBOARD"
+            android:textSize="30dp"></TextView>
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:textSize="40dp"
+            android:id="@+id/dashTime"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/textview_button"
+            android:clickable="true"
+            android:drawableStart="@drawable/timer"
+            android:drawableLeft="@drawable/timer"
+            android:minWidth="500dp"
+            android:text="Time" />
+
+        <TextView
+            android:textSize="40dp"
+            android:id="@+id/dashFriend"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/textview_button"
+            android:clickable="true"
+            android:drawableStart="@drawable/human"
+            android:drawableLeft="@drawable/human"
+            android:text="Friend" />
+
+        <TextView
+            android:textSize="40dp"
+            android:id="@+id/dashBattery"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/textview_button"
+            android:clickable="true"
+            android:drawableStart="@drawable/battery2"
+            android:drawableLeft="@drawable/battery2"
+            android:text="Battery" />
+
+        <TextView
+            android:textSize="40dp"
+            android:id="@+id/dashMoney"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/textview_button"
+            android:clickable="true"
+            android:drawableStart="@drawable/money2"
+            android:drawableLeft="@drawable/money2"
+            android:text="Money" />
+
+        <TextView
+            android:textSize="40dp"
+            android:id="@+id/dashArchive"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/textview_button"
+            android:clickable="true"
+            android:drawableStart="@drawable/archive"
+            android:drawableLeft="@drawable/archive"
+            android:text="Archive" />
+
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>
